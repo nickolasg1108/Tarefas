@@ -170,4 +170,66 @@ public class GerenciadorTarefas {
             sc.nextLine(); // Limpa o buffer do scanner para nao travar
         }
     }
+        /*
+     * ---------------------------------------------------------
+     * FUNCIONALIDADE 5: LISTAR RAÍZES E FOLHAS
+     * DESENVOLVIDO POR: Nickolas Gabriel
+     * ---------------------------------------------------------
+     */
+    
+    /*
+     * Retorna todas as tarefas que não possuem tarefa "pai" (Raízes).
+     */
+    public List<Tarefa> listarRaizes() {
+        List<Tarefa> raizes = new ArrayList<>();
+        
+        // Itera sobre todas as tarefas armazenadas no HashMap (tarefas.values())
+        for (Tarefa tarefa : tarefas.values()) {
+            // Uma raiz é uma tarefa que não tem pai
+            if (tarefa.getPai() == null) {
+                raizes.add(tarefa);
+            }
+        }
+        return raizes;
+    }
+    
+    /*
+     * Retorna todas as tarefas que não possuem subtarefas (Folhas / Finais).
+     */
+    public List<Tarefa> listarFolhas() {
+        List<Tarefa> folhas = new ArrayList<>();
+    
+        // Itera sobre todas as tarefas armazenadas no HashMap (tarefas.values())
+        for (Tarefa tarefa : tarefas.values()) {
+            // Uma folha é uma tarefa cuja lista de filhos está vazia
+            if (tarefa.getFilhos().isEmpty()) {
+                folhas.add(tarefa);
+            }
+        }
+        return folhas;
+    }
+    
+    /*
+     * Método interativo para mostrar as tarefas raízes e folhas.
+     */
+    public void mostrarRaizesEFolhas() {
+        
+        // 1. Mostrar Raízes
+        List<Tarefa> raizes = listarRaizes();
+        System.out.println("\n--- TAREFAS SEM DEPENDÊNCIAS (RAÍZES) ---");
+        if (raizes.isEmpty()) {
+            System.out.println("Nenhuma tarefa raiz encontrada.");
+        } else {
+            raizes.forEach(t -> System.out.println("ID " + t.getId() + ": " + t.getDescricao() + " | Prioridade: " + t.getPrioridade()));
+        }
+    
+        // 2. Mostrar Folhas
+        List<Tarefa> folhas = listarFolhas();
+        System.out.println("\n--- TAREFAS FINAIS (FOLHAS) ---");
+        if (folhas.isEmpty()) {
+            System.out.println("Nenhuma tarefa folha encontrada.");
+        } else {
+            folhas.forEach(t -> System.out.println("ID " + t.getId() + ": " + t.getDescricao() + " | Prioridade: " + t.getPrioridade()));
+        }
+    }
 }
