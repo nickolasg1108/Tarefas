@@ -49,32 +49,13 @@ public class App {
                     gerenciador.verificarCaminhoDependencia();
                     break;
                 case 5:
-                    System.out.println("\n--- TAREFAS SEM DEPENDÊNCIA (RAÍZES) ---");
-                    var raizes = gerenciador.listarRaizes();
-
-                    if (raizes.isEmpty()) {
-                        System.out.println("Nenhuma tarefa raiz encontrada");
-                    } else {
-                        for (Tarefa t : raizes) {
-                            System.out.println("ID: " + t.getId() + " - " + t.getDescricao() + " (Prioridade: "
-                                    + t.getPrioridade() + ")");
-                        }
-                    }
+                    gerenciador.mostrarRaizes();
                     break;
                 case 6:
-                    System.out.println("\n--- TAREFAS FINAIS (FOLHAS) ---");
-                    var folhas = gerenciador.listarFolhas();
-
-                    if (folhas.isEmpty()) {
-                        System.out.println("Nenhuma tarefa folha encontrada.");
-                    } else {
-                        for (Tarefa t : folhas) {
-                            System.out.println("ID: " + t.getId() + " - " + t.getDescricao() + " (Prioridade: "
-                                    + t.getPrioridade() + ")");
-                        }
-                    }
+                    gerenciador.mostrarFolhas();
                     break;
                 case 7:
+                    
 
                     break;
                 case 0:
